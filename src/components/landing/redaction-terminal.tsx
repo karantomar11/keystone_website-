@@ -94,7 +94,7 @@ export default function RedactionTerminal() {
                     <div className="size-2.5 rounded-full bg-yellow-500"></div>
                     <div className="size-2.5 rounded-full bg-green-500"></div>
                 </div>
-                <p className="flex-1 text-center text-xs text-muted-foreground">Keystone E2E</p>
+                <p className="flex-1 text-center text-xs text-muted-foreground">Keystone Terminal</p>
             </div>
             <div className="space-y-2 p-4 md:p-6 min-h-[320px] md:min-h-[280px]">
                 {lines.map((line, index) => (
