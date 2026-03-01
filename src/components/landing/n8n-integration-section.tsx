@@ -1,0 +1,152 @@
+import { ArrowRight, Puzzle, Link as LinkIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+const WorkflowNode = ({
+  icon,
+  title,
+  subtitle,
+  accentColor,
+  className,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+  accentColor: string;
+  className?: string;
+}) => (
+  <div
+    className={cn(
+      'relative rounded-lg border border-white/10 bg-[#131313] p-4 shadow-lg',
+      className
+    )}
+  >
+    <div
+      className="absolute -top-px left-4 h-px w-2/3"
+      style={{
+        background: `linear-gradient(90deg, transparent, ${accentColor}, transparent)`,
+      }}
+    />
+    <div className="flex items-center gap-3">
+      <div className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/5">
+        {icon}
+      </div>
+      <div>
+        <p className="font-semibold text-white">{title}</p>
+        <p className="text-xs text-zinc-400">{subtitle}</p>
+      </div>
+    </div>
+  </div>
+);
+
+export default function N8nIntegrationSection() {
+  return (
+    <section className="container">
+      <div className="mx-auto mb-12 max-w-3xl text-center">
+        <h2 className="text-3xl font-extrabold tracking-tighter sm:text-4xl">
+          Zero-Knowledge Automations. Zero Code Required.
+        </h2>
+        <p className="mt-4 text-lg leading-relaxed text-zinc-400">
+          Don&apos;t want to build from scratch? Integrate Keystone directly into
+          your existing automation pipelines with our custom, self-hosted n8n
+          nodes.
+        </p>
+      </div>
+
+      <div className="grid items-center gap-12 md:grid-cols-2">
+        <div className="flex flex-col gap-8">
+          <ul className="space-y-4 text-zinc-300">
+            <li className="flex items-start gap-3">
+              <Puzzle className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
+              <span>
+                <span className="font-semibold text-white">
+                  Drop-in Nodes:
+                </span>{' '}
+                Instantly add `Keystone Redact` and `Keystone Restore` to any
+                workflow.
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <LinkIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary" />
+              <span>
+                <span className="font-semibold text-white">
+                  Compliant by Default:
+                </span>{' '}
+                Build HIPAA-compliant Gmail-to-OpenAI auto-responders in
+                minutes.
+              </span>
+            </li>
+          </ul>
+          <div>
+            <div className="rounded-lg border border-white/10 bg-[#0A0A0A] font-code text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+              <div className="p-4">
+                <p className="text-zinc-500">
+                  # Inside your n8n custom directory
+                </p>
+                <p className="text-white">
+                  <span className="text-primary/70">$</span> npm install
+                  n8n-nodes-keystone
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-center gap-4 md:gap-2">
+          <WorkflowNode
+            icon={
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-red-400"
+              >
+                <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
+                <path d="M3 5v14a2 2 0 0 0 2 2h14v-4" />
+                <path d="M18 12a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2v-4h-2z" />
+              </svg>
+            }
+            title="Webhook Trigger"
+            subtitle="Raw Patient Data"
+            accentColor="hsl(var(--destructive))"
+            className="w-full max-w-sm"
+          />
+          <ArrowRight className="h-6 w-6 rotate-90 text-zinc-600 md:rotate-0" />
+          <WorkflowNode
+            icon={<Puzzle className="h-5 w-5 text-primary" />}
+            title="Keystone Node"
+            subtitle="Redact PII & Hiding SSN"
+            accentColor="hsl(var(--primary))"
+            className="w-full max-w-sm"
+          />
+          <ArrowRight className="h-6 w-6 rotate-90 text-zinc-600 md:rotate-0" />
+          <WorkflowNode
+            icon={
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-blue-400"
+              >
+                <path
+                  d="M21.707 10.293L19.414 8L21.707 5.707L20.293 4.293L18 6.586L15.707 4.293L14.293 5.707L16.586 8L14.293 10.293L15.707 11.707L18 9.414L20.293 11.707L21.707 10.293ZM10.5 19.5C10.2348 19.5 9.9804 19.3946 9.7929 19.2071C9.6054 19.0196 9.5 18.7652 9.5 18.5V17.5H4.5V10.5H11.5V5.5H12.5C12.7652 5.5 13.0196 5.60538 13.2071 5.79288C13.3946 5.98038 13.5 6.23478 13.5 6.5V18.5C13.5 18.7652 13.3946 19.0196 13.2071 19.2071C13.0196 19.3946 12.7652 19.5 12.5 19.5H10.5ZM2 21V8H13V9H4V19H11V15H9V13H11V11H13V15C13 15.5523 12.5523 16 12 16H9V19H2V21Z"
+                  fill="currentColor"
+                />
+              </svg>
+            }
+            title="OpenAI Node"
+            subtitle="Analyze Symptoms Safely"
+            accentColor="#3b82f6"
+            className="w-full max-w-sm"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}

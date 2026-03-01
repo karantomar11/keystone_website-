@@ -6,6 +6,7 @@ import TrustBanner from '@/components/landing/trust-banner';
 import Footer from '@/components/layout/footer';
 import AuditTimeline from '@/components/landing/audit-timeline';
 import ComplianceTeamsSection from '@/components/landing/compliance-teams-section';
+import N8nIntegrationSection from '@/components/landing/n8n-integration-section';
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
           <AuditTimeline />
         </section>
         <ComplianceTeamsSection />
+        <N8nIntegrationSection />
         <TrustBanner />
       </main>
       <Footer />

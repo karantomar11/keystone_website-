@@ -20,7 +20,7 @@ const complianceItems = [
 
 export default function TrustBanner() {
   return (
-    <section id="security" className="bg-card/50">
+    <section id="security" className="bg-zinc-900/50">
       <div className="container">
         <div className="grid gap-8 text-center md:grid-cols-3 md:text-left">
           {complianceItems.map((item) => (
