@@ -46,7 +46,7 @@ export default function AuditTimeline() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
       <div className="relative">
         <TimelineStep
-          time="T=0ms"
+          time="T=4ms"
           badge="[POLICY: FINANCIAL]"
           title="Ingestion & Policy Match"
           copy="Sensitive data is identified and mapped to a secure, reversible placeholder."
@@ -55,30 +55,29 @@ export default function AuditTimeline() {
               Detected:{' '}
               <span className="text-red-400/70">"Visa ending in 4242"</span>{' '}
               -&gt; Mapped to{' '}
-              <span className="text-primary/70">[CARD_1]</span>
+              <span className="text-primary/70">[CARD_1]</span> in 4.2ms
             </p>
           }
         />
         <TimelineStep
-          time="T=120ms"
+          time="T=15ms"
           badge="[NETWORK: OUTBOUND]"
           title="Air-Gapped Request to OpenAI"
           copy="Transmitting zero-knowledge payload. Original data securely stored in local SQLite Vault."
           logContent={
             <p>
-              Payload: "Please process refund for{' '}
-              <span className="text-primary/70">[CARD_1]</span>."
+              Local Overhead: 15.1ms. Awaiting Cloud LLM response...
             </p>
           }
         />
         <TimelineStep
-          time="T=840ms"
+          time="T=+1.2s (Network Latency)"
           badge="[RESTORE: SUCCESS]"
           title="Cryptographic Restoration"
           copy="LLM response received. Vault lock released. Data restored seamlessly."
           logContent={
             <p>
-              Forensic Hash: a8f9c... generated. Audit log saved to disk.
+              Cloud Latency: 1.2s | Local Restoration: 3.8ms | Total Overhead: 18.9ms
             </p>
           }
           isLast={true}
