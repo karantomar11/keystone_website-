@@ -77,16 +77,26 @@ export default function N8nIntegrationSection() {
             </li>
           </ul>
           <div>
-            <div className="rounded-lg border border-white/10 bg-[#0A0A0A] font-code text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-              <div className="p-4">
-                <p className="text-zinc-500">
-                  # Inside your n8n custom directory
-                </p>
-                <p className="text-white">
-                  <span className="text-primary/70">$</span> npm install
-                  n8n-nodes-keystone
-                </p>
-              </div>
+            <h4 className="mb-4 text-lg font-semibold text-white">Install in 3 Clicks:</h4>
+            <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">1</div>
+                    <p className="pt-0.5 text-zinc-400">Open your n8n dashboard and navigate to <span className="font-medium text-zinc-200">Settings</span>.</p>
+                </div>
+                <div className="flex items-start gap-4">
+                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">2</div>
+                    <p className="pt-0.5 text-zinc-400">Click on <span className="font-medium text-zinc-200">Community Nodes</span> and select 'Install'.</p>
+                </div>
+                <div className="flex items-start gap-4">
+                    <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">3</div>
+                    <p className="pt-0.5 text-zinc-400">
+                        Search for{' '}
+                        <code className="rounded bg-white/10 px-2 py-1 font-mono text-sm text-primary">
+                            n8n-nodes-keystone
+                        </code>{' '}
+                        and click 'I Agree'.
+                    </p>
+                </div>
             </div>
           </div>
         </div>
