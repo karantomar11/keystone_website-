@@ -1,107 +1,113 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { interactiveRedactionDemo } from "@/ai/flows/interactive-redaction-demo";
+import { cn } from "@/lib/utils";
 
 const Cursor = () => <span className="ml-1 animate-pulse bg-foreground">_</span>;
 
+const datasets = [
+    {
+        userInput: `> User Input: "Patient John Doe (DOB 01/01/1980) has a high fever."`,
+        pii: "[KEYSTONE LOCAL] Identifying PII...",
+        safePayload: `> Safe Payload To OpenAI: "Patient [PERSON_1] (DOB [DATE_1]) has a high fever."`,
+        processing: "[OPEN_AI] Processing...",
+        aiResponse: `> AI Response: "Recommend rest and fluids for Patient [PERSON_1] due to fever on [DATE_1]."`,
+        unlocking: "[KEYSTONE LOCAL] Unlocking Vault Hash...",
+        finalOutput: `> Final Output to User: "Recommend rest and fluids for Patient John Doe due to fever on 01/01/1980."`,
+    },
+    {
+        userInput: `> User Input: "My card is 4242-4242-4242-4242, key is sk-123xyz."`,
+        pii: "[KEYSTONE LOCAL] Identifying PII...",
+        safePayload: `> Safe Payload To OpenAI: "My card is [CARD_1], key is [API_KEY_1]."`,
+        processing: "[OPEN_AI] Processing...",
+        aiResponse: `> AI Response: "Acknowledged [CARD_1] and [API_KEY_1]."`,
+        unlocking: "[KEYSTONE LOCAL] Unlocking Vault Hash...",
+        finalOutput: `> Final Output to User: "Acknowledged card 4242-4242-4242-4242, key sk-123xyz."`,
+    },
+];
+
+const STAGE_DELAY = 1200;
+const LOOP_DELAY = 4000;
+
 export default function RedactionTerminal() {
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
-  const [isRedacting, setIsRedacting] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
+    const [datasetIndex, setDatasetIndex] = useState(0);
+    const [lines, setLines] = useState<any[]>([]);
+    const [isAnimating, setIsAnimating] = useState(true);
 
-  const fullInput = "Patient John Doe (DOB 01/01/1980) has a high fever. His SSN is 987-65-4321 and his API key is sk-123xyz.";
-  
-  useEffect(() => {
-    let typingTimeout: NodeJS.Timeout;
+    const currentData = useMemo(() => datasets[datasetIndex], [datasetIndex]);
 
-    if (input.length < fullInput.length) {
-      typingTimeout = setTimeout(() => {
-        setInput(fullInput.slice(0, input.length + 1));
-      }, 30);
-    } else {
-      setIsRedacting(true);
-      (async () => {
-        const result = await interactiveRedactionDemo({ sensitiveText: fullInput });
-        let outputTypingTimeout: NodeJS.Timeout;
-        
-        const typeOutput = (index = 0) => {
-          if (index <= result.redactedText.length) {
-            setOutput(result.redactedText.slice(0, index));
-            outputTypingTimeout = setTimeout(() => typeOutput(index + 1), 30);
-          } else {
-            setIsRedacting(false);
-            setIsComplete(true);
-          }
-        };
+    useEffect(() => {
+        const animationSteps = [
+            { text: currentData.userInput, color: 'text-red-400' },
+            { text: currentData.pii, color: 'text-yellow-400' },
+            { text: currentData.safePayload, color: 'text-green-400', highlight: true },
+            { text: currentData.processing, color: 'text-zinc-400' },
+            { text: currentData.aiResponse, color: 'text-zinc-400', highlight: true },
+            { text: currentData.unlocking, color: 'text-blue-400' },
+            { text: currentData.finalOutput, color: 'text-blue-400' },
+        ];
 
-        setTimeout(() => typeOutput(), 500);
+        setLines([]);
+        setIsAnimating(true);
+        let delay = 0;
+        const timeouts: NodeJS.Timeout[] = [];
 
-        return () => clearTimeout(outputTypingTimeout);
-      })();
-    }
+        animationSteps.forEach((step, index) => {
+            delay += STAGE_DELAY;
+            timeouts.push(setTimeout(() => {
+                setLines(prev => [...prev, step]);
+                if (index === animationSteps.length - 1) {
+                    setIsAnimating(false);
+                    timeouts.push(setTimeout(() => {
+                        setDatasetIndex(prev => (prev + 1) % datasets.length);
+                    }, LOOP_DELAY));
+                }
+            }, delay));
+        });
 
-    return () => clearTimeout(typingTimeout);
-  }, [input]);
+        return () => timeouts.forEach(clearTimeout);
 
-  const formattedOutput = useMemo(() => {
-    const parts = output.split(/(\[.*?\])/g);
-    return parts.map((part, i) =>
-      part.startsWith("[") && part.endsWith("]") ? (
-        <span key={i} className="text-primary">
-          {part}
-        </span>
-      ) : (
-        part
-      )
-    );
-  }, [output]);
+    }, [datasetIndex, currentData]);
 
-  return (
-    <div className="w-full rounded-lg border border-white/10 bg-[#0A0A0A] font-code text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
-      <div className="flex flex-row items-center gap-2 border-b border-white/10 bg-white/5 p-3">
-        <div className="flex gap-1.5">
-          <div className="size-2.5 rounded-full bg-red-500"></div>
-          <div className="size-2.5 rounded-full bg-yellow-500"></div>
-          <div className="size-2.5 rounded-full bg-green-500"></div>
-        </div>
-        <p className="flex-1 text-center text-xs text-muted-foreground">Keystone Redaction</p>
-      </div>
-      <div className="min-h-[160px] space-y-2 p-4 md:p-6">
-        <div className="flex items-start">
-          <span className="text-primary mr-2 flex-shrink-0 font-bold">$</span>
-          <p className="flex-1 break-all">
-            <span className="text-muted-foreground">{"curl -X POST -d '{"}</span>
-            <span className="text-foreground">{`"text": "${input}"`}</span>
-            <span className="text-muted-foreground">{"}' https://api.openai.com/v1/..."}</span>
-            {!isRedacting && !output && <Cursor />}
-          </p>
-        </div>
-        <div className="flex items-start">
-          <span className="text-red-500 mr-2 flex-shrink-0 font-bold">!</span>
-          <p className="text-red-500">Warning: Sending PII to third-party APIs is a security risk.</p>
-        </div>
-        {isRedacting && (
-           <div className="flex items-start transition-opacity duration-300">
-             <span className="text-primary mr-2 flex-shrink-0 font-bold">$</span>
-             <p className="text-primary animate-pulse">KEYSTONE: Intercepting and redacting PII...</p>
-           </div>
-        )}
-        {output && (
-          <div className="flex items-start">
-            <span className="text-primary mr-2 flex-shrink-0 font-bold">$</span>
+    const HighlightedLine = ({ text, color }: { text: string, color: string }) => {
+        const parts = text.split(/(\[.*?\])/g);
+        return <div className={cn("flex items-start", color)}>
             <p className="flex-1 break-all">
-              <span className="text-muted-foreground">{"curl -X POST -d '{"}</span>
-              <span className="text-foreground">{`"text": "`}</span>
-              {formattedOutput}
-              <span className="text-foreground">{`"}`}</span>
-              <span className="text-muted-foreground">{"' https://api.openai.com/v1/..."}</span>
-              {isComplete ? null : <Cursor />}
+                {parts.map((part, i) =>
+                    part.startsWith("[") && part.endsWith("]") ? (
+                        <span key={i} className="text-primary">
+                            {part}
+                        </span>
+                    ) : (
+                        part
+                    )
+                )}
             </p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+        </div>
+    };
+
+    return (
+        <div className="w-full rounded-lg border border-white/10 bg-[#0A0A0A]/80 font-code text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-xl">
+            <div className="flex flex-row items-center gap-2 border-b border-white/10 bg-white/5 p-3">
+                <div className="flex gap-1.5">
+                    <div className="size-2.5 rounded-full bg-red-500"></div>
+                    <div className="size-2.5 rounded-full bg-yellow-500"></div>
+                    <div className="size-2.5 rounded-full bg-green-500"></div>
+                </div>
+                <p className="flex-1 text-center text-xs text-muted-foreground">Keystone E2E</p>
+            </div>
+            <div className="min-h-[280px] space-y-2 p-4 md:p-6">
+                {lines.map((line, index) => (
+                    <div key={index} className="animate-in fade-in duration-500">
+                        {line.highlight ? (
+                            <HighlightedLine text={line.text} color={line.color} />
+                        ) : (
+                            <div className={line.color}>{line.text}</div>
+                        )}
+                    </div>
+                ))}
+                {isAnimating && <Cursor />}
+            </div>
+        </div>
+    );
 }

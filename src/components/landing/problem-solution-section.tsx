@@ -5,7 +5,7 @@ export default function ProblemSolutionSection() {
   return (
     <section id="architecture" className="container">
       <div className="grid gap-8 md:grid-cols-2">
-        <div className="relative overflow-hidden rounded-lg border border-white/5 bg-zinc-900/50 backdrop-blur-sm">
+        <div className="relative overflow-hidden rounded-lg border border-white/5 bg-white/[0.02] backdrop-blur-md">
           <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-red-500 to-transparent" />
           <CardHeader className="flex flex-row items-center gap-4">
             <XCircle className="h-8 w-8 text-destructive" />
@@ -17,7 +17,7 @@ export default function ProblemSolutionSection() {
             </p>
           </CardContent>
         </div>
-        <div className="relative overflow-hidden rounded-lg border border-white/5 bg-zinc-900/50 backdrop-blur-sm">
+        <div className="relative overflow-hidden rounded-lg border border-white/5 bg-white/[0.02] backdrop-blur-md">
           <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent" />
           <CardHeader className="flex flex-row items-center gap-4">
             <CheckCircle className="h-8 w-8 text-primary" />
