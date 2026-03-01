@@ -5,6 +5,7 @@ import FeatureGrid from '@/components/landing/feature-grid';
 import TrustBanner from '@/components/landing/trust-banner';
 import Footer from '@/components/layout/footer';
 import AuditTimeline from '@/components/landing/audit-timeline';
+import ComplianceTeamsSection from '@/components/landing/compliance-teams-section';
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
           </div>
           <AuditTimeline />
         </section>
+        <ComplianceTeamsSection />
         <TrustBanner />
       </main>
       <Footer />
