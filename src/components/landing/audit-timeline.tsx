@@ -77,7 +77,7 @@ export default function AuditTimeline() {
           copy="LLM response received. Vault lock released. Data restored seamlessly."
           logContent={
             <p>
-              Network Latency: 49ms | Local Restoration: 3.8ms | Total E2E Overhead: 68.1ms
+              Network Latency: 49ms | Local Restoration: 3.8ms | Total Overhead: 68.1ms
             </p>
           }
           isLast={true}
