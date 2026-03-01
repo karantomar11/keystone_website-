@@ -34,17 +34,16 @@ export default function RedactionTerminal() {
     const [lines, setLines] = useState<any[]>([]);
     const [isAnimating, setIsAnimating] = useState(true);
 
-    const currentData = useMemo(() => datasets[datasetIndex], [datasetIndex]);
-
     useEffect(() => {
+        const currentData = datasets[datasetIndex];
         const animationSteps = [
-            { text: currentData.userInput, color: 'text-red-400' },
+            { text: currentData.userInput, color: 'text-red-400' }, // Red for danger
             { text: currentData.pii, color: 'text-yellow-400' },
-            { text: currentData.safePayload, color: 'text-green-400', highlight: true },
+            { text: currentData.safePayload, color: 'text-green-400', highlight: true }, // Green for safety
             { text: currentData.processing, color: 'text-zinc-400' },
-            { text: currentData.aiResponse, color: 'text-zinc-400', highlight: true },
-            { text: currentData.unlocking, color: 'text-blue-400' },
-            { text: currentData.finalOutput, color: 'text-blue-400' },
+            { text: currentData.aiResponse, color: 'text-green-400', highlight: true }, // Green for safety
+            { text: currentData.unlocking, color: 'text-blue-400' }, // Blue for success
+            { text: currentData.finalOutput, color: 'text-blue-400' }, // Blue for success
         ];
 
         setLines([]);
@@ -67,7 +66,7 @@ export default function RedactionTerminal() {
 
         return () => timeouts.forEach(clearTimeout);
 
-    }, [datasetIndex, currentData]);
+    }, [datasetIndex]);
 
     const HighlightedLine = ({ text, color }: { text: string, color: string }) => {
         const parts = text.split(/(\[.*?\])/g);
@@ -85,14 +84,14 @@ export default function RedactionTerminal() {
             </p>
         </div>
     };
-
+    
     return (
         <div className="w-full rounded-lg border border-white/10 bg-[#0A0A0A]/80 font-code text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-xl">
             <div className="flex flex-row items-center gap-2 border-b border-white/10 bg-white/5 p-3">
                 <div className="flex gap-1.5">
-                    <div className="size-2.5 rounded-full bg-red-500"></div>
-                    <div className="size-2.5 rounded-full bg-yellow-500"></div>
-                    <div className="size-2.5 rounded-full bg-green-500"></div>
+                    <div className="size-2 rounded-full bg-red-500"></div>
+                    <div className="size-2 rounded-full bg-yellow-500"></div>
+                    <div className="size-2 rounded-full bg-green-500"></div>
                 </div>
                 <p className="flex-1 text-center text-xs text-muted-foreground">Keystone Terminal</p>
             </div>

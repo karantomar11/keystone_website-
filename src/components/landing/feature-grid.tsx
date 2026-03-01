@@ -1,4 +1,8 @@
+"use client";
+
 import { Database, ShieldCheck, Workflow, ClipboardList } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -27,9 +31,52 @@ const features = [
   },
 ];
 
+const FeatureCard = ({ feature }: { feature: (typeof features)[0] }) => {
+  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  return (
+    <div
+      onMouseMove={handleMouseMove}
+      className="group relative cursor-default rounded-2xl border border-white/10 bg-[#0F0F0F] p-8 transition-all duration-300 ease-in-out hover:border-white/20 hover:bg-[#1A1A1A]"
+      style={
+        {
+          "--mouse-x": `${mousePosition.x}px`,
+          "--mouse-y": `${mousePosition.y}px`,
+        } as React.CSSProperties
+      }
+    >
+      <div
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%)`,
+        }}
+      />
+      <div className="relative">
+        <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-white/5 bg-white/5">
+          {feature.icon}
+        </div>
+        <h3 className="mb-2 text-xl font-semibold leading-none tracking-tight">{feature.title}</h3>
+        <p className="leading-relaxed text-zinc-400">{feature.description}</p>
+      </div>
+    </div>
+  );
+};
+
 export default function FeatureGrid() {
   return (
-    <section id="features" className="container">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+      id="features"
+      className="container"
+    >
       <div className="mx-auto mb-12 max-w-2xl text-center">
         <h2 className="text-3xl font-extrabold tracking-tighter sm:text-4xl">Built for Trust and Performance</h2>
         <p className="mt-4 text-lg leading-relaxed text-zinc-400">
@@ -38,15 +85,9 @@ export default function FeatureGrid() {
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {features.map((feature) => (
-          <div key={feature.title} className="cursor-default rounded-2xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-md transition-all duration-300 ease-in-out hover:border-white/10 hover:bg-white/[0.04]">
-            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-white/5 bg-white/[0.03]">
-              {feature.icon}
-            </div>
-            <h3 className="mb-2 text-xl font-semibold leading-none tracking-tight">{feature.title}</h3>
-            <p className="leading-relaxed text-zinc-400">{feature.description}</p>
-          </div>
+          <FeatureCard key={feature.title} feature={feature} />
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

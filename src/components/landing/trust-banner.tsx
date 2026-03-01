@@ -1,4 +1,7 @@
+"use client";
+
 import { ShieldCheck } from "lucide-react";
+import { motion } from "framer-motion";
 
 const complianceItems = [
   {
@@ -20,7 +23,14 @@ const complianceItems = [
 
 export default function TrustBanner() {
   return (
-    <section id="security" className="bg-zinc-900/50">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+      id="security"
+      className="bg-zinc-900/50"
+    >
       <div className="container">
         <div className="grid gap-8 text-center md:grid-cols-3 md:text-left">
           {complianceItems.map((item) => (
@@ -39,6 +49,6 @@ export default function TrustBanner() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

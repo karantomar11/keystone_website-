@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const TimelineStep = ({
   time,
   badge,
@@ -42,7 +46,13 @@ const TimelineStep = ({
 
 export default function AuditTimeline() {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/50 p-8 md:p-12">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+      className="relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/50 p-8 md:p-12"
+    >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
       <div className="relative">
         <TimelineStep
@@ -64,11 +74,7 @@ export default function AuditTimeline() {
           badge="[NETWORK: OUTBOUND]"
           title="Air-Gapped Request to OpenAI"
           copy="Transmitting zero-knowledge payload. Original data securely stored in local SQLite Vault."
-          logContent={
-            <p>
-              Local Overhead: 15.1ms. Awaiting Model response...
-            </p>
-          }
+          logContent={<p>Local Overhead: 15.1ms. Awaiting Model response...</p>}
         />
         <TimelineStep
           time="T=68ms"
@@ -77,12 +83,13 @@ export default function AuditTimeline() {
           copy="LLM response received. Vault lock released. Data restored seamlessly."
           logContent={
             <p>
-              Network Latency: 49ms | Local Restoration: 3.8ms | Total Overhead: 68.1ms
+              Network Latency: 49ms | Local Restoration: 3.8ms | Total Overhead:
+              68.1ms
             </p>
           }
           isLast={true}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }

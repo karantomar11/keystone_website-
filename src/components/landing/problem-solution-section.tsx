@@ -1,9 +1,19 @@
+"use client";
+
 import { CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { XCircle, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function ProblemSolutionSection() {
   return (
-    <section id="architecture" className="container">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+      id="architecture"
+      className="container"
+    >
       <div className="grid gap-8 md:grid-cols-2">
         <div className="relative overflow-hidden rounded-lg border border-white/5 bg-white/[0.02] backdrop-blur-md">
           <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-red-500 to-transparent" />
@@ -30,6 +40,6 @@ export default function ProblemSolutionSection() {
           </CardContent>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

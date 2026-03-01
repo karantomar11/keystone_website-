@@ -1,18 +1,55 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Download, Github } from "lucide-react";
 import RedactionTerminal from "./redaction-terminal";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function HeroSection() {
   return (
-    <section className="container grid items-center gap-8 pb-8 pt-6 md:py-10">
+    <motion.section
+      className="container grid items-center gap-8 pb-8 pt-6 md:py-10"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 text-center">
-        <h1 className="text-4xl font-black leading-tight tracking-tighter md:text-6xl lg:text-7xl lg:leading-[1.1]">
+        <motion.h1
+          variants={itemVariants}
+          className="text-4xl font-black leading-tight tracking-tighter md:text-6xl lg:text-7xl lg:leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60"
+        >
           The Zero-Knowledge AI Privacy Middleware.
-        </h1>
-        <p className="max-w-2xl leading-relaxed text-zinc-400 sm:text-xl">
+        </motion.h1>
+        <motion.p
+          variants={itemVariants}
+          className="max-w-2xl leading-relaxed text-zinc-400 sm:text-xl"
+        >
           Harness the power of Cloud LLMs without leaking a single byte of PII. Local redaction. Offline storage. Automated restoration.
-        </p>
-        <div className="flex w-full items-center justify-center space-x-4">
+        </motion.p>
+        <motion.div
+          variants={itemVariants}
+          className="flex w-full items-center justify-center space-x-4"
+        >
           <Button size="lg" className="shadow-lg shadow-primary/20 transition-transform duration-300 ease-in-out hover:-translate-y-0.5">
             <Download className="mr-2" />
             Download Desktop App
@@ -26,11 +63,11 @@ export default function HeroSection() {
             <Github className="mr-2" />
             View on GitHub
           </a>
-        </div>
+        </motion.div>
       </div>
-      <div className="mx-auto w-full max-w-3xl">
+      <motion.div variants={itemVariants} className="mx-auto w-full max-w-3xl">
         <RedactionTerminal />
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

@@ -1,4 +1,7 @@
+"use client";
+
 import { Landmark, ServerCog, ShieldPlus } from "lucide-react";
+import { motion } from "framer-motion";
 
 const compliancePersonas = [
   {
@@ -20,7 +23,13 @@ const compliancePersonas = [
 
 export default function ComplianceTeamsSection() {
   return (
-    <section className="container">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+      className="container"
+    >
       <div className="mx-auto mb-12 max-w-3xl text-center">
         <h2 className="text-3xl font-extrabold tracking-tighter sm:text-4xl">
           Built for High-Compliance Teams.
@@ -45,6 +54,6 @@ export default function ComplianceTeamsSection() {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
