@@ -96,7 +96,7 @@ export default function RedactionTerminal() {
                 </div>
                 <p className="flex-1 text-center text-xs text-muted-foreground">Keystone E2E</p>
             </div>
-            <div className="min-h-[280px] space-y-2 p-4 md:p-6">
+            <div className="space-y-2 p-4 md:p-6 min-h-[320px] md:min-h-[280px]">
                 {lines.map((line, index) => (
                     <div key={index} className="animate-in fade-in duration-500">
                         {line.highlight ? (

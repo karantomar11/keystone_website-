@@ -28,7 +28,7 @@ export default function HeroSection() {
           </a>
         </div>
       </div>
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto w-full max-w-3xl">
         <RedactionTerminal />
       </div>
     </section>
