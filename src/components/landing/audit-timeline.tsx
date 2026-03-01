@@ -66,18 +66,18 @@ export default function AuditTimeline() {
           copy="Transmitting zero-knowledge payload. Original data securely stored in local SQLite Vault."
           logContent={
             <p>
-              Local Overhead: 15.1ms. Awaiting Cloud LLM response...
+              Local Overhead: 15.1ms. Awaiting Model response...
             </p>
           }
         />
         <TimelineStep
-          time="T=+1.2s (Network Latency)"
+          time="T=68ms"
           badge="[RESTORE: SUCCESS]"
           title="Cryptographic Restoration"
           copy="LLM response received. Vault lock released. Data restored seamlessly."
           logContent={
             <p>
-              Cloud Latency: 1.2s | Local Restoration: 3.8ms | Total Overhead: 18.9ms
+              Network Latency: 49ms | Local Restoration: 3.8ms | Total E2E Overhead: 68.1ms
             </p>
           }
           isLast={true}
