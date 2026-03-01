@@ -1,20 +1,40 @@
 import { ShieldCheck } from "lucide-react";
 
 const complianceItems = [
-  "SOC2 Preparatory",
-  "HIPAA Compliant Architecture",
-  "PCI-DSS Safe",
+  {
+    title: "SOC2 Audit-Ready Logs",
+    description:
+      "Built-in forensic cryptographic hashing. Total traceability for your internal compliance team's next audit.",
+  },
+  {
+    title: "HIPAA-Friendly Architecture",
+    description:
+      "Zero PHI leaves your local machine. Fully air-gapped redaction ensures patient data never hits third-party APIs.",
+  },
+  {
+    title: "Zero-Knowledge by Design",
+    description:
+      "Open-source transparency. Keystone cannot see, store, or transmit your decrypted Vault mappings.",
+  },
 ];
 
 export default function TrustBanner() {
   return (
     <section id="security" className="bg-card/50">
       <div className="container">
-        <div className="flex flex-col items-center justify-center gap-6 text-center md:flex-row md:justify-around md:gap-8">
+        <div className="grid gap-8 text-center md:grid-cols-3 md:text-left">
           {complianceItems.map((item) => (
-            <div key={item} className="flex items-center gap-3">
-              <ShieldCheck className="h-6 w-6 flex-shrink-0 text-primary" />
-              <span className="font-semibold text-foreground">{item}</span>
+            <div
+              key={item.title}
+              className="flex flex-col items-center gap-3 md:flex-row md:items-start"
+            >
+              <ShieldCheck className="h-8 w-8 flex-shrink-0 text-primary md:h-6 md:w-6" />
+              <div>
+                <h3 className="font-semibold text-foreground">{item.title}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {item.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
