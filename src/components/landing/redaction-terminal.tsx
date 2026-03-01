@@ -1,9 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { interactiveRedactionDemo } from "@/ai/flows/interactive-redaction-demo";
-import { cn } from "@/lib/utils";
 
 const Cursor = () => <span className="ml-1 animate-pulse bg-foreground">_</span>;
 
@@ -61,16 +59,16 @@ export default function RedactionTerminal() {
   }, [output]);
 
   return (
-    <Card className="w-full font-code text-sm shadow-2xl shadow-primary/10 transition-all hover:shadow-primary/20">
-      <CardHeader className="flex flex-row items-center gap-2 border-b p-3">
+    <div className="w-full rounded-lg border border-white/10 bg-[#0A0A0A] font-code text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+      <div className="flex flex-row items-center gap-2 border-b border-white/10 bg-white/5 p-3">
         <div className="flex gap-1.5">
-          <div className="size-3 rounded-full bg-red-500"></div>
-          <div className="size-3 rounded-full bg-yellow-500"></div>
-          <div className="size-3 rounded-full bg-green-500"></div>
+          <div className="size-2.5 rounded-full bg-red-500"></div>
+          <div className="size-2.5 rounded-full bg-yellow-500"></div>
+          <div className="size-2.5 rounded-full bg-green-500"></div>
         </div>
         <p className="flex-1 text-center text-xs text-muted-foreground">Keystone Redaction</p>
-      </CardHeader>
-      <CardContent className="p-4 md:p-6 min-h-[160px] space-y-2">
+      </div>
+      <div className="min-h-[160px] space-y-2 p-4 md:p-6">
         <div className="flex items-start">
           <span className="text-primary mr-2 flex-shrink-0 font-bold">$</span>
           <p className="flex-1 break-all">
@@ -103,7 +101,7 @@ export default function RedactionTerminal() {
             </p>
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
