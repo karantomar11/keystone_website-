@@ -1,3 +1,4 @@
+
 import { ArrowRight, Puzzle, Link as LinkIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -121,15 +122,15 @@ export default function N8nIntegrationSection() {
               </svg>
             }
             title="Webhook Trigger"
-            subtitle="Raw Patient Data"
+            subtitle="Receives Raw Patient Data"
             accentColor="hsl(var(--destructive))"
             className="w-full max-w-sm"
           />
           <ArrowRight className="h-6 w-6 rotate-90 text-zinc-600 md:rotate-0" />
           <WorkflowNode
             icon={<Puzzle className="h-5 w-5 text-primary" />}
-            title="Keystone Node"
-            subtitle="Redact PII & Hiding SSN"
+            title="Keystone Redact"
+            subtitle="Air-gaps PII & Vaults SSN"
             accentColor="hsl(var(--primary))"
             className="w-full max-w-sm"
           />
@@ -150,9 +151,17 @@ export default function N8nIntegrationSection() {
                 />
               </svg>
             }
-            title="OpenAI Node"
-            subtitle="Analyze Symptoms Safely"
+            title="OpenAI Chat"
+            subtitle="Analyzes Safe Placeholders"
             accentColor="#3b82f6"
+            className="w-full max-w-sm"
+          />
+           <ArrowRight className="h-6 w-6 rotate-90 text-zinc-600 md:rotate-0" />
+           <WorkflowNode
+            icon={<Puzzle className="h-5 w-5 text-primary" />}
+            title="Keystone Restore"
+            subtitle="Unlocks Vault & Restores Original Data"
+            accentColor="hsl(var(--primary))"
             className="w-full max-w-sm"
           />
         </div>
