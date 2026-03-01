@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="border-t">
       <div className="container py-8 text-center text-sm text-muted-foreground md:py-12">
         <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:justify-between">
-          <p>&copy; 2024 Keystone. All rights reserved.</p>
+          <p>&copy; 2026 Keystone. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <Link href="#" className="hover:text-foreground">
               GitHub
