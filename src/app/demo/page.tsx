@@ -31,8 +31,9 @@ export default function DemoPage() {
     try {
       const result = await interactiveRedactionDemo({ sensitiveText: text });
       setRedactedText(result.redactedText);
-    } catch (e) {
-      setError('An error occurred while redacting the text. Please try again.');
+    } catch (e: any) {
+      const errorMessage = e.message || 'An error occurred while redacting the text. Please try again.';
+      setError(errorMessage);
       console.error(e);
     } finally {
       setIsLoading(false);
@@ -59,7 +60,7 @@ export default function DemoPage() {
               Interactive Redaction Demo
             </h1>
             <p className="mt-4 max-w-2xl text-zinc-400 sm:text-xl">
-              This demo showcases our powerful AI-driven redaction engine. In a real Keystone deployment, this redaction runs locally to ensure zero sensitive data ever reaches the cloud. Enter any text below to see the accuracy of our redaction model in real-time.
+              This demo showcases our powerful AI-driven redaction engine. In a real Keystone deployment, this redaction runs locally to ensure zero sensitive data ever reaches the cloud. Enter any text below to see the accuracy of our redaation model in real-time.
             </p>
           </div>
           <div className="mx-auto mt-12 grid max-w-5xl gap-8 md:grid-cols-2">
