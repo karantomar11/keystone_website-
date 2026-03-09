@@ -59,7 +59,7 @@ export default function DemoPage() {
               Interactive Redaction Demo
             </h1>
             <p className="mt-4 max-w-2xl text-zinc-400 sm:text-xl">
-              Type any text containing sensitive information below. Our AI model will identify and redact PII in real-time, ensuring zero data ever leaves your environment.
+              This demo showcases our powerful AI-driven redaction engine. In a real Keystone deployment, this redaction runs locally to ensure zero sensitive data ever reaches the cloud. Enter any text below to see the accuracy of our redaction model in real-time.
             </p>
           </div>
           <div className="mx-auto mt-12 grid max-w-5xl gap-8 md:grid-cols-2">
