@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -52,11 +51,6 @@ export default function HeroSection() {
           className="flex w-full items-center justify-center space-x-4"
         >
           <Button asChild size="lg" className="shadow-lg shadow-primary/20 transition-transform duration-300 ease-in-out hover:-translate-y-0.5">
-            <Link href="/demo">
-              Try Live Demo
-            </Link>
-          </Button>
-          <Button asChild size="lg" variant="ghost">
             <Link href="/contact">
               Contact Sales
             </Link>
