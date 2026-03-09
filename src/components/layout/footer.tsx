@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 
 export default function Footer() {
@@ -13,7 +14,7 @@ export default function Footer() {
             <Link href="#" className="hover:text-foreground">
               Documentation
             </Link>
-            <Link href="#" className="hover:text-foreground">
+            <Link href="/contact" className="hover:text-foreground">
               Contact
             </Link>
             <Link href="#" className="hover:text-foreground">

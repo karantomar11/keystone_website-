@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -6,10 +7,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, ShieldCheck } from "lucide-react";
 
 const navLinks = [
-  { name: "Features", href: "#features" },
-  { name: "Architecture", href: "#architecture" },
-  { name: "Security", href: "#security" },
-  { name: "Documentation", href: "#" },
+  { name: "Features", href: "/#features" },
+  { name: "Architecture", href: "/#architecture" },
+  { name: "Security", href: "/#security" },
+  { name: "Live Demo", href: "/demo" },
 ];
 
 export default function Header() {
