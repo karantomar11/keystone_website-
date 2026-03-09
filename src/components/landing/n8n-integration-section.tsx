@@ -168,7 +168,7 @@ export default function N8nIntegrationSection() {
                 <span className="font-semibold text-white">
                   Compliant by Default:
                 </span>{' '}
-                Build HIPAA-compliant Gmail-to-OpenAI auto-responders in
+                Build GDPR-compliant Gmail-to-OpenAI auto-responders in
                 minutes.
               </span>
             </li>
