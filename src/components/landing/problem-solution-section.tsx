@@ -23,7 +23,7 @@ export default function ProblemSolutionSection() {
           </CardHeader>
           <CardContent>
             <p className="leading-relaxed text-zinc-400">
-              Sending raw PII, PHI, or API keys directly to Cloud AI breaches GDPR, HIPAA, SOC2, and trust. Every API call is a potential data leak, exposing your users and your company to massive compliance and reputational risk.
+              Sending raw PII, PHI, or API keys directly to Cloud AI breaches GDPR, SOC2, and trust. Every API call is a potential data leak, exposing your users and your company to massive compliance and reputational risk.
             </p>
           </CardContent>
         </div>
@@ -35,7 +35,7 @@ export default function ProblemSolutionSection() {
           </CardHeader>
           <CardContent>
             <p className="leading-relaxed text-zinc-400">
-              A local-first, air-gapped redaction engine that runs entirely on your infrastructure. Keystone acts as a self-hosted privacy firewall, ensuring sensitive data is redacted *before* it ever leaves your machine. Finally, a true private AI solution where your data stays with you, not a third-party cloud.
+              A local-first, air-gapped redaction engine that runs entirely on your infrastructure. Keystone acts as a self-hosted privacy firewall, ensuring sensitive data is redacted <strong>before</strong> it ever leaves your machine. Finally, a true private AI solution where your data stays with you, not a third-party cloud.
             </p>
           </CardContent>
         </div>
