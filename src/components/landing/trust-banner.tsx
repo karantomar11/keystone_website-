@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 
 const complianceItems = [
   {
-    title: "SOC2 Audit-Ready Logs",
+    title: "GDPR & Audit-Ready Logs",
     description:
-      "Built-in forensic cryptographic hashing. Total traceability for your internal compliance team's next audit.",
+      "Built-in forensic cryptographic hashing provides total traceability for both GDPR and SOC2 compliance audits.",
   },
   {
-    title: "HIPAA-Friendly Architecture",
+    title: "GDPR-Friendly Architecture",
     description:
-      "Zero PHI leaves your local machine. Fully air-gapped redaction ensures patient data never hits third-party APIs.",
+      "Zero personal data leaves your local machine. Fully air-gapped redaction ensures it never hits third-party APIs.",
   },
   {
     title: "Zero-Knowledge by Design",
