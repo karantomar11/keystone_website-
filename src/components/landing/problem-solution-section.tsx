@@ -35,7 +35,7 @@ export default function ProblemSolutionSection() {
           </CardHeader>
           <CardContent>
             <p className="leading-relaxed text-zinc-400">
-              A local-first, air-gapped redaction engine that ensures Cloud AI only sees mathematically irreversible placeholders. Keystone acts as a privacy firewall, protecting your data before it ever leaves your machine.
+              A local-first, air-gapped redaction engine that runs entirely on your infrastructure. Keystone acts as a self-hosted privacy firewall, ensuring sensitive data is redacted *before* it ever leaves your machine, so Cloud AI only sees mathematically irreversible placeholders.
             </p>
           </CardContent>
         </div>
