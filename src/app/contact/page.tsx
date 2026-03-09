@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import type { z } from 'zod';
+import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -18,7 +18,21 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { useToast } from "@/hooks/use-toast";
 import { useTransition } from 'react';
-import { formSchema, submitContactForm } from './actions';
+import { submitContactForm } from './actions';
+
+// Define the schema in the client component for form validation.
+const formSchema = z.object({
+  name: z.string().min(2, {
+    message: 'Name must be at least 2 characters.',
+  }),
+  email: z.string().email({
+    message: 'Please enter a valid email address.',
+  }),
+  message: z.string().min(10, {
+    message: 'Message must be at least 10 characters.',
+  }),
+});
+
 
 export default function ContactPage() {
   const { toast } = useToast();

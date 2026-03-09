@@ -2,7 +2,8 @@
 
 import { z } from 'zod';
 
-export const formSchema = z.object({
+// The schema is defined here for the server action's type safety, but not exported.
+const formSchema = z.object({
   name: z.string().min(2, {
     message: 'Name must be at least 2 characters.',
   }),
