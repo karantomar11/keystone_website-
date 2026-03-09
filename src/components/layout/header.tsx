@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Download, Github, Menu, ShieldCheck } from "lucide-react";
+import { Menu, ShieldCheck } from "lucide-react";
 
 const navLinks = [
   { name: "Features", href: "#features" },
@@ -65,19 +65,8 @@ export default function Header() {
               </SheetContent>
             </Sheet>
           </div>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="ghost" size="icon">
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
-            </Button>
-          </a>
-          <Button>
-            <Download className="mr-2 h-4 w-4" />
-            Download for macOS
+          <Button asChild>
+            <Link href="/contact">Contact Us</Link>
           </Button>
         </div>
       </div>
