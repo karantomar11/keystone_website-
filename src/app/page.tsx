@@ -19,8 +19,7 @@ export default function Home() {
         <section className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <h2 className="text-3xl font-extrabold tracking-tighter sm:text-4xl">
-              <span className="text-primary">[100% Transparent]</span>. No Black
-              Boxes. Total Explainability.
+              <span className="text-primary">[100% Transparent]</span>. No Black Boxes. Total Explainability.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-zinc-400">
               Every redaction is forensically logged, hashed, and tracked. You
