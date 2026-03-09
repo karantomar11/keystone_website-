@@ -23,7 +23,7 @@ export default function ProblemSolutionSection() {
           </CardHeader>
           <CardContent>
             <p className="leading-relaxed text-zinc-400">
-              Sending raw PII, PHI, or API keys directly to OpenAI breaches HIPAA, SOC2, and trust. Every API call is a potential data leak, exposing your users and your company to massive compliance and reputational risk.
+              Sending raw PII, PHI, or API keys directly to Cloud AI breaches HIPAA, SOC2, and trust. Every API call is a potential data leak, exposing your users and your company to massive compliance and reputational risk.
             </p>
           </CardContent>
         </div>
