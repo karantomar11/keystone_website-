@@ -9,25 +9,25 @@ const features = [
     icon: <Database className="h-6 w-6 text-white" />,
     title: "Local SQLite Persistence",
     description:
-      "Zero cloud databases. All API keys, forensic audit logs, and vault mappings are stored locally via a ridiculously fast SQLite implementation.",
+      "Zero cloud databases. All API keys, forensic audit logs, and vault mappings are stored locally in a high-performance, embedded SQLite database.",
   },
   {
     icon: <ShieldCheck className="h-6 w-6 text-white" />,
-    title: "OWASP 100% Compliant API",
+    title: "OWASP Compliant Local API",
     description:
-      "Enterprise-grade security on day one. Passed the rigorous OWASP ZAP API Security audit with a 100% success rate. No structural vulnerabilities.",
+      "Your self-hosted instance runs a fully OWASP-compliant API. Passed the rigorous ZAP security audit, ensuring zero structural vulnerabilities in your local environment.",
   },
   {
     icon: <Workflow className="h-6 w-6 text-white" />,
-    title: "n8n Automation Integration",
+    title: "Local Automation (n8n)",
     description:
-      "Ship secure AI workflows instantly. Includes custom local n8n nodes for drag-and-drop privacy automation.",
+      "Build secure AI workflows instantly with our custom, self-hosted n8n nodes for drag-and-drop privacy automation that runs entirely on your infrastructure.",
   },
   {
     icon: <ClipboardList className="h-6 w-6 text-white" />,
-    title: "Forensic Audit Logging",
+    title: "Local Forensic Logging",
     description:
-      "Every single redacted entity gets a unique cryptographic hash and forensic ID. Total traceability for your compliance team.",
+      "Every redaction is captured in a local, cryptographically-hashed audit log. Get total traceability for compliance without your log data ever leaving your control.",
   },
 ];
 
